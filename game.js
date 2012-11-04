@@ -1,9 +1,16 @@
 define(['order!enchant','order!nineleap.enchant', 'order!util.enchant', 'order!ScrollableScene.enchant'], function (){
         enchant();
 		var table = [
-				['H', '',  '',  '',  '', '', '',  'He'],
-				['Li','Be','B', 'C', 'N','O','F', 'Ne'],
-				['Na','Mg','Al','Si','P','S','Cl','Ar']
+				['あ','い','う','え','お'],
+				['か','き','く','け','こ'],
+				['さ','し','す','せ','そ'],
+				['た','ち','つ','て','と'],
+				['な','に','ぬ','ね','の'],
+				['は','ひ','ふ','へ','ほ'],
+				['ま','み','む','め','も'],
+				['や','い','ゆ','え','よ'],
+				['ら','り','る','れ','ろ'],
+				['わ','い','う','え','を']
 			],
 			GameScene = enchant.Class.create(enchant.Scene, {
 				initialize: function () {
@@ -15,8 +22,10 @@ define(['order!enchant','order!nineleap.enchant', 'order!util.enchant', 'order!S
 					this.answers.x = 64 / 2;
 					this.answers.y = 64 * 4;
 					for (x = 0; x < 4; ++x) {
-						panel = new MutableText(x * 64, 0, 64, 64);
+						panel = new Label(x * 64, 0, 64, 64);
+						panel.x = x * 64;
 						panel.centered = true;
+						panel.redraw = function(){};
 						panel.text = '';
 						panel.height = 64;
 						panel.backgroundColor = (x % 2) ? '#eef' : '#eff';
@@ -35,7 +44,10 @@ define(['order!enchant','order!nineleap.enchant', 'order!util.enchant', 'order!S
 					this.panels.y = 48;
 					for (y = 0; y < 3; ++y) {
 						for (x = 0; x < 3; ++x) {
-							panel = new MutableText(x * 64, y * 64, 64, 64);
+							panel = new Label(x * 64, y * 64, 64, 64);
+							panel.redraw = function(){};
+							panel.x = x * 64;
+							panel.y = y * 64;
 							panel.centered = true;
 							panel.text = '';
 							panel.height = 64;
